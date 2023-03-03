@@ -1,0 +1,498 @@
+@charset "utf-8";
+
+// reset css
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,
+big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,
+dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,
+embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {
+	margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {display: block;}
+body {line-heightS: 1;}
+ol,ul {list-style: none;}
+blockquote,q {quotes: none;}
+blockquote:before,blockquote:after,q:before,q:after {content: '';content: none;}
+table {border-collapse: collapse;border-spacing: 0;}
+a[href^="tel"]{
+    color:inherit;
+    text-decoration:none;
+}
+
+a{
+	text-decoration: none;
+	outline: none;
+	cursor: pointer;
+}
+
+select,
+input{
+	padding:0;
+	margin:0;
+	border: none;
+	border-radius: 0;
+	outline: none;
+}
+
+// vars 變數
+
+$mobile_max:991px;
+$web_max:1250px;
+$main_color_1:#066a86;
+$main_color_3:#ff4d00;
+
+// mixin 共用
+
+@mixin gradient($deg,$start,$end){
+	background: linear-gradient($deg, $start 0%, $end 100%); 
+	background: -moz-linear-gradient($deg, $start 0%, $end 100%); 
+	background: -webkit-linear-gradient($deg, $start 0%, $end 100%); 
+	background: -o-linear-gradient($deg, $start 0%, $end 100%); 
+}
+
+@mixin gradient2($deg,$start,$end){
+	background: rgb(255,50,50); /* Old browsers */
+	background: -moz-linear-gradient($deg, $end 0%, $start 50%, $end 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient($deg, $end 0%,$start 50%,$end 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient($deg, $end 0%,$start 50%,$end 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+@mixin gradient3($deg,$start,$middle,$end){
+	background: linear-gradient(0deg, $start 0%, $middle 50% ,$end 100%); 
+	background: -moz-linear-gradient($deg, $start 0%, $middle 50% ,$end 100%); 
+	background: -webkit-linear-gradient($deg, $start 0%, $middle 50% ,$end 100%); 
+	background: -o-linear-gradient($deg, $start 0%, $middle 50% ,$end 100%); 
+}
+
+@keyframes ani-ad-show {
+    0% {
+    	height: 200px;
+    }
+    100% {
+    	height: 400px;
+    }
+}
+@keyframes ani-ad-hide {
+    0% {
+    	height: 400px;
+    }
+    100% {
+    	height: 200px;
+    }
+}
+
+// main 主要 css 開始
+body{
+	background: #ccc;
+	color: #ccc;
+	.row{
+		width: calc(100% - 60px);
+		height: 70px;
+		max-width: calc(1250px - 60px);
+		margin: 0 auto;
+		padding: 0 30px;
+		background: #ddd;
+		@media only screen and (max-width: 767px) {
+			width: 100%;
+			padding:0;
+		}
+	}
+}
+
+.line{
+	@include gradient2(90deg,#000,#fff);
+}
+
+header{
+	width: 100%;
+	.row{
+		@media only screen and (max-width: 767px) {
+			height:auto;
+		}
+		.navi-wrap{
+			background: #111;
+			overflow: hidden;
+			.main-logo-box{
+				width: 200px;
+				height: 70px;
+				float: left;
+				@media only screen and (max-width: 767px) {
+					width: 120px;
+					height: 50px;
+				}
+				a{
+					display:block;
+					width: 100%;
+					text-align: center;
+					padding-top: 10px;
+					img{
+						width: 80%;
+						display: block;
+						overflow: hidden;
+						margin: 0 auto;
+					}
+				}
+			}
+			.main-nav-box{
+				width: calc(100% - 350px);
+				height: 70px;
+				background: #333;
+				overflow: hidden;
+				float: left;
+				@media only screen and (max-width: 767px) {
+					width: 100%;
+					height: 50px;
+				}
+				ul.menu-wrap{
+					width: 100%;
+					min-width: 630px;
+					text-align: center;
+					li.menu-items{
+						line-height: 70px;
+						height: 70px;
+						display: inline-block;
+						min-width: 80px;
+						position: relative;
+						@media only screen and (max-width: 767px) {
+							line-height: 50px;
+							height: 50px;
+						}
+						a{
+							color: #fff;
+							text-align: center;
+							&:hover{
+								@media only screen and (min-width: 767px) {
+									color: #fc0;
+								}
+							}
+						}
+						&:after{
+							content: '';
+							height: 3px;
+							width: 100%;
+							position: absolute;
+							bottom: 0;
+							left:0;
+							background: #fc0;
+							display: none;
+						}
+						&.active:after{
+							display: block;
+						}
+					}
+				}
+			}
+			.search-box{
+				width: 150px;
+				height: 30px;
+				margin-top: 20px;
+				line-height: 30px;
+				background: #111;
+				float: right;
+				background: #fff;
+				border-radius: 30px;
+				@media only screen and (max-width: 767px) {
+					display: none;
+				}
+				input{
+					height: 30px;
+					border:none;
+					padding: 0 10px;
+					margin:0;
+					display: block;
+					overflow: hidden;
+					width: calc(100% - 50px);
+					float: left;
+					background: none;
+				}
+				a.btn-search{
+					width: 30px;
+					float: right;
+					text-align: center;
+				}
+			}
+			.btn-nav{
+				position: absolute;
+				display: none;
+				width: 40px;
+				height: 40px;
+				position: absolute;
+				right: 5px;
+				top: 5px;
+				background: none;
+				border:none;
+				padding: 0;
+				span{
+					background: #fff;
+					height: 2px;
+					border-radius: 10px;
+					width: 70%;
+					display: block;
+					margin: 6px auto;
+				}
+				@media only screen and (max-width: 767px) {
+					display: block;
+				}
+			}
+		}
+	}
+}
+
+section.main-ad-section{
+	.row{
+		overflow: hidden;
+		height: auto;
+		.main-ad-box{
+			width: 100%;
+			height: 200px;
+			background: red;
+			border-bottom: 1px solid #000;
+			position: relative;
+			margin-bottom: 20px;
+			@media only screen and (max-width: 767px) {
+				margin-bottom: 0;
+			}
+			.btn-close{
+				color: #fff;
+				position: absolute;
+				width: 30px;
+				height: 30px;
+				text-align: center;
+				line-height: 30px;
+				background: #666;
+				right: 0;
+				top: 0;
+				display: none;
+			}
+			.ad-img{
+			}
+			&.ad-show{
+			    animation: ani-ad-show 0.3s linear 0s 1 forwards;
+			}
+			&.ad-hide{
+			    animation: ani-ad-hide 0.1s linear 0s 1 forwards;
+			}
+		}
+	}
+}
+
+section.main-content-section{
+	.row{
+		overflow: hidden;
+		height: auto;
+		.breadcrumbs-box{
+			width: 100%;
+			height: 30px;
+			line-height: 30px;
+			background: #999;
+			margin-bottom: 20px;
+			@media only screen and (max-width: 767px) {
+				margin-bottom: 0;
+			}
+		}
+		.main-box{
+			width: calc(100% - 300px - 20px);
+			background:#333;
+			min-height: 200px;
+			float: left;
+			margin-right: 20px;
+			margin-bottom: 20px;
+			@media only screen and (max-width: 767px) {
+				width: 100%;
+				margin-bottom: 0;
+			}
+			.movie-box{
+				width: 100%;
+				iframe{
+					width: 100%;
+				}
+			}
+			.main-tab{
+				width: 90%;
+				max-width: 300px;
+				margin: 10px auto;
+			}
+		}
+		.side-box{
+			width: 300px;
+			background:#666;
+			float: right;
+			margin-bottom: 20px;
+			@media only screen and (max-width: 767px) {
+				margin-bottom: 0;
+				width: 100%;
+			}
+			.login-wrap{
+				height: 315px;
+				margin-bottom: 0;
+				@media only screen and (max-width: 767px) {
+					height: auto;
+				}
+			}
+			.pop-wrap{
+				min-height: 200px;
+				background: #444;
+				overflow: hidden;
+				.pop-wrap-tab{
+					width: 90%;
+					margin: 10px auto;
+				}
+			}
+			.ad-wrap{
+				min-height: 200px;
+				background: red;
+				border-bottom: 1px solid #000;
+			}
+		}
+		.middle-ad-box{
+			width: 100%;
+			height: 80px;
+			background:red;
+			border-bottom: 1px solid #000;
+			clear: both;
+			margin-bottom: 20px;
+			@media only screen and (max-width: 767px) {
+				margin-bottom: 0;
+			}
+		}
+		.bottom-box{
+			width: 100%;
+			overflow: hidden;
+			.hot-wrap{
+				width: calc((100% - 20px)/2);
+				margin-right: 20px;
+				background: #333;
+				min-height: 200px;
+				float: left;
+				margin-bottom: 20px;
+				@media only screen and (max-width: 767px) {
+					width: 100%;
+					margin-right: 0;
+					margin-bottom: 0;
+					float: none;
+				}
+			}
+			.new-wrap{
+				width: calc((100% - 20px)/2);
+				background: #444;
+				min-height: 200px;
+				float: right;
+				margin-bottom: 20px;
+				@media only screen and (max-width: 767px) {
+					width: 100%;
+					margin-bottom: 0;
+					float: none;
+				}
+			}
+		}
+	}
+}
+
+/*頁籤*/
+.ui-tab{
+	border-radius: 5px;
+	overflow: hidden;
+	height: 40px;
+	border:1px solid #999;
+	clear:both;
+	a{
+		display:block;
+		margin: 0;
+		height: 40px;
+		background: #fff;
+		color:#666;
+		float: left;
+		text-align: center;
+		line-height: 40px;
+		width:50%;
+		&.active:hover,
+		&:hover{
+			background: #666;
+			color:#fff;
+		}
+		&.active{
+			background: #999;
+			color:#fff;
+		}
+	}
+}
+
+/*標題*/
+.main-box-title{
+	font-size: 25px;
+	font-weight: bold;
+	height: 40px;
+	line-height: 40px;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	letter-spacing: 5px;
+}
+
+/*登入區塊*/
+.login-wrap{
+	padding: 20px;
+	.username,
+	.userpsw{
+		display: block;
+		width: 100%;
+		margin-bottom: 15px;
+		input{
+			padding: 0 10px;
+			height: 30px;
+			width: calc(100% - 20px);
+			font-size: 15px;
+		}
+	}
+	.btn-login{
+		width: 100%;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		background: #fff;
+	}
+	.bottom-btn-wrap{
+		padding-top: 15px;
+		overflow: hidden;
+		display: block;
+		.btn-gamebase,
+		.btn-facebook,
+		.btn-google{
+			display:block;
+			width: calc((100% - 20px)/3);
+			background: #333;
+			float: left;
+			margin-bottom: 15px;
+			&:after{
+				content: '';
+				display: block;
+				width: 100%;
+				height: 0;
+				padding-bottom: 100%;
+			}
+		}
+		.btn-facebook{
+			margin: 0 10px;
+		}
+		.btn-regist,.btn-forget{
+			width: calc(100%/2);
+			text-align: center;
+			height: 30px;
+			line-height: 30px;
+			color: #fff;
+			display: block;
+			float: left;
+		}
+	}
+}
+
+footer{
+	.row{
+		overflow: hidden;
+		.copyright{
+			min-height: 100px;
+			width: 100%;
+			background: #333;
+		}
+	}
+}
+

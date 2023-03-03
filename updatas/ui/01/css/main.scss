@@ -1,0 +1,790 @@
+@charset "utf-8";
+
+// reset css
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address,
+big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt,
+dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details,
+embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a[href^="tel"] {
+    color: inherit;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+}
+
+select,
+input {
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    outline: none;
+}
+
+// vars 變數
+$mobile_max:991px;
+$web_max:1250px;
+$main_color_1:#066a86;
+$main_color_3:#ff4d00;
+
+// mixin 共用
+@mixin gradient($deg, $start, $end) {
+    background: linear-gradient($deg, $start 0%, $end 100%);
+    background: -moz-linear-gradient($deg, $start 0%, $end 100%);
+    background: -webkit-linear-gradient($deg, $start 0%, $end 100%);
+    background: -o-linear-gradient($deg, $start 0%, $end 100%);
+}
+
+@mixin gradient2($deg, $start, $end) {
+    background: rgb(255, 50, 50);
+    background: -moz-linear-gradient($deg, $end 0%, $start 50%, $end 100%);
+    background: -webkit-linear-gradient($deg, $end 0%, $start 50%, $end 100%);
+    background: linear-gradient($deg, $end 0%, $start 50%, $end 100%);
+}
+
+@mixin gradient3($deg, $start, $middle, $end) {
+    background: linear-gradient(0deg, $start 0%, $middle 50%, $end 100%);
+    background: -moz-linear-gradient($deg, $start 0%, $middle 50%, $end 100%);
+    background: -webkit-linear-gradient($deg, $start 0%, $middle 50%, $end 100%);
+    background: -o-linear-gradient($deg, $start 0%, $middle 50%, $end 100%);
+}
+
+@keyframes ani-ad-show {
+    0% {
+        height: 200px;
+    }
+    100% {
+        height: 400px;
+    }
+}
+
+@keyframes ani-ad-hide {
+    0% {
+        height: 400px;
+    }
+    100% {
+        height: 200px;
+    }
+}
+
+// main 主要 css 開始
+body {
+    background: #eee;
+    color: #333;
+    padding-top: 70px;
+    font-family: "微軟正黑體",Helvetica,Arial,sans-serif;
+    @media only screen and (max-width: 767px) {
+        padding-top: 100px;
+    }
+    .row {
+        width: calc(100% - 60px);
+        height: 70px;
+        max-width: calc(1280px - 30px);
+        margin: 0 auto;
+        padding: 0 15px;
+        background: none;
+        @media only screen and (max-width: 767px) {
+            width: 100%;
+            padding: 0;
+        }
+    }
+}
+
+.no1{
+    @include gradient(-90deg,#ffbc00,rgba(255,255,255,0));
+}
+.no2{
+    @include gradient(-90deg,#929292,rgba(255,255,255,0));
+}
+.no3{
+    @include gradient(-90deg,#ce7a52,rgba(255,255,255,0));
+}
+header {
+    width: 100%;
+    background: #1f333a;
+    position: fixed;
+    top: 0;
+    z-index: 99999;
+    .row {
+        @media only screen and (max-width: 767px) {
+            height:auto;
+        }
+        .navi-wrap {
+            background: #1f333a;
+            overflow: hidden;
+            .main-logo-box {
+                width: 200px;
+                height: 70px;
+                float: left;
+                @media only screen and (max-width: 767px) {
+                    width: 120px;
+                    height: 50px;
+                }
+                a {
+                    display: block;
+                    width: 100%;
+                    text-align: center;
+                    padding-top: 10px;
+                    img {
+                        width: 80%;
+                        display: block;
+                        overflow: hidden;
+                        margin: 0 auto;
+                    }
+                }
+            }
+            .main-nav-box {
+                width: calc(100% - 350px);
+                height: 70px;
+                background: #1f333a;
+                overflow: hidden;
+                float: left;
+                @media only screen and (max-width: 767px) {
+                    width: 100%;
+                    height: 50px;
+                }
+                ul.menu-wrap {
+                    width: 100%;
+                    min-width: 630px;
+                    text-align: center;
+                    li.menu-items {
+                        line-height: 70px;
+                        height: 70px;
+                        display: inline-block;
+                        min-width: 80px;
+                        position: relative;
+                        @media only screen and (max-width: 767px) {
+                            line-height: 50px;
+                            height: 50px;
+                        }
+                        a {
+                            color: #fff;
+                            text-align: center;
+                            &:hover {
+                                @media only screen and (min-width: 767px) {
+                                    color: #fc0;
+                                }
+                            }
+                        }
+                        &:after {
+                            content: '';
+                            height: 3px;
+                            width: 100%;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            background: #fc0;
+                            display: none;
+                        }
+                        &.active:after {
+                            display: block;
+                        }
+                    }
+                }
+            }
+            .search-box {
+                width: 150px;
+                margin-top: 20px;
+                float: right;
+                @media only screen and (max-width: 767px) {
+                    top: 0;
+                    right: 50px;
+                    position: absolute;
+                    margin-top: 10px;
+                    &.hide_search{
+                        width: 30px;
+                        background: none;
+                        input{
+                            display: none;
+                        }
+                        .btn-search{
+                            color:#fff;
+                        }
+                    }
+                }
+            }
+            .btn-nav {
+                position: absolute;
+                display: none;
+                width: 40px;
+                height: 40px;
+                position: absolute;
+                right: 5px;
+                top: 5px;
+                background: none;
+                border: none;
+                padding: 0;
+                outline: none;
+                cursor: pointer;
+                z-index: 9999999;
+                transform:scale(1);
+                span {
+                    background: #fff;
+                    height: 2px;
+                    border-radius: 10px;
+                    width: 70%;
+                    display: block;
+                    margin: 6px auto;
+                }
+                &.clicked{
+                    transform:scale(0.8);
+                }
+                &.clicked span{
+                    background: #000;
+                    width: 100%;
+                    margin: 10px auto;
+                }
+                @media only screen and (max-width: 767px) {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+section.main-ad-section {
+    @media only screen and (max-width: 767px) {
+        display: none;
+    }
+    .row {
+        overflow: hidden;
+        height: auto;
+        .main-ad-box {
+            width: 100%;
+            position: relative;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            @media only screen and (max-width: 767px) {
+                margin-bottom: 0;
+                margin-top: 0;
+            }
+            .btn-close {
+                color: #fff;
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                text-align: center;
+                line-height: 30px;
+                background: #666;
+                right: 0;
+                top: 0;
+                display: none;
+            }
+            .ad-img {
+                width: 100%;
+                img {
+                    width: 100%;
+                    display: block;
+                    overflow: hidden;
+                }
+            }
+            &.ad-show {
+                animation: ani-ad-show 0.3s linear 0s 1 forwards;
+            }
+            &.ad-hide {
+                animation: ani-ad-hide 0.1s linear 0s 1 forwards;
+            }
+        }
+    }
+}
+
+section.main-content-section {
+    .row {
+        overflow: hidden;
+        height: auto;
+        .breadcrumbs-box {
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            background: none;
+            margin-bottom: 20px;
+            color: #1f333a;
+            @media only screen and (max-width: 767px) {
+                margin-bottom: 0;
+            }
+        }
+        .main-box {
+            width: calc(100% - 400px - 20px);
+            min-height: 200px;
+            float: left;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            @media only screen and (max-width: 767px) {
+                width: 100%;
+                margin-bottom: 0;
+            }
+            .movie-box {
+                width: 100%;
+                iframe {
+                    width: 100%;
+                    overflow: hidden;
+                    display: block;
+                }
+                margin-bottom: 20px;
+                @media only screen and (max-width: 767px) {
+                    height: auto;
+                    margin-bottom: 0;
+                }
+            }
+            .main-list-wrap{
+                overflow: hidden;
+                .main-tab {
+                    width: 90%;
+                    max-width: 230px;
+                    @media only screen and (max-width: 767px) {
+                        max-width: none;
+                        width: 100%;
+                    }
+                }
+                margin-bottom: 20px;
+                @media only screen and (max-width: 767px) {
+                    height: auto;
+                    margin-bottom: 0;
+                }
+            }
+            .middle-ad-box {
+                width: 100%;
+                background: #dedcdc;
+                clear: both;
+                margin-bottom: 20px;
+                text-align: center;
+                margin-bottom: 20px;
+                img{
+                    width: 100%;
+                    display: block;
+                    overflow: hidden;
+                    margin: 0 auto;
+                }
+                @media only screen and (max-width: 767px) {
+                    height: auto;
+                    margin-bottom: 0;
+                    
+                }
+            }
+
+        }
+        .side-box {
+            width: 400px;
+            background:none;
+            float: right;
+            margin-bottom: 20px;
+            @media only screen and (max-width: 767px) {
+                margin-bottom: 0;
+                width: 100%;
+            }
+            .login-wrap {
+                height: 400px;
+                margin-bottom: 20px;
+                @media only screen and (max-width: 767px) {
+                    height: auto;
+                    margin-bottom: 0;
+                }
+            }
+            .pop-wrap,
+            .hot-wrap,
+            .new-wrap {
+                overflow: hidden;
+                .main-tab {
+                    width: 90%;
+                    margin: 20px auto;
+                    max-width: 100px;
+                    @media only screen and (max-width: 767px) {
+                        width: 100%;
+                        margin: 10px auto;
+                        max-width: none;
+                    }
+                }
+                margin-bottom: 20px;
+                @media only screen and (max-width: 767px) {
+                    height: auto;
+                    margin-bottom: 0;
+                }
+            }
+            .ad-wrap {
+                min-height: 200px;
+                width: 100%;
+                img{
+                    width: 100%;
+                    display: block;
+                    overflow: hidden;
+                    margin-bottom: 10px;
+                }
+                margin-bottom: 20px;
+                @media only screen and (max-width: 767px) {
+                    height: auto;
+                    margin-bottom: 0;
+                    display: none;
+                }
+            }
+        }
+        .middle-ad-box {
+            width: 100%;
+            background: #dedcdc;
+            clear: both;
+            margin-bottom: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+
+            @media only screen and (max-width: 767px) {
+                height: auto;
+                margin-bottom: 0;
+                display: none;
+            }
+        }
+        .bottom-box {
+            width: 100%;
+            overflow: hidden;
+            .hot-wrap {
+                width: calc((100% - 20px)/2);
+                margin-right: 20px;
+                background: #333;
+                min-height: 200px;
+                float: left;
+                margin-bottom: 20px;
+                @media only screen and (max-width: 767px) {
+                    width: 100%;
+                    margin-right: 0;
+                    margin-bottom: 0;
+                    float: none;
+                }
+            }
+            .new-wrap {
+                width: calc((100% - 20px)/2);
+                background: #444;
+                min-height: 200px;
+                float: right;
+                margin-bottom: 20px;
+                @media only screen and (max-width: 767px) {
+                    width: 100%;
+                    margin-bottom: 0;
+                    float: none;
+                }
+            }
+        }
+    }
+}
+
+
+/*頁籤*/
+
+.ui-tab {
+    border-radius: 20px;
+    overflow: hidden;
+    height: 35px;
+    border: 1px solid #b9b9b9;
+    clear: both;
+    min-width: 150px;
+    font-size: 14px;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+    a {
+        display: block;
+        margin: 0;
+        height: 35px;
+        background: #fff;
+        color: #b9b9b9;
+        float: left;
+        text-align: center;
+        line-height: 35px;
+        width: 50%;
+        letter-spacing: 3px;
+        &.active:hover,
+        &:hover {
+            background: #bcd6dc;
+  			color: #fff;
+        }
+        &.active {
+  			background: #e0e8ea;
+  			color: #666;
+        }
+    }
+}
+
+/*more-btn*/
+.more-btn{
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    color:#fff;
+    background: #297792;
+    border-radius: 30px;
+    text-align: center;
+    clear: both;
+    float: right;
+    margin: 20px 0 0;
+    &:hover{
+        background: #fc0;
+    }
+}
+
+/*search-box*/
+.search-box {
+    width: 100%;
+    max-width: 250px;
+    height: 30px;
+    margin-top: 20px;
+    line-height: 30px;
+    background: #111;
+    background: #fff;
+    border-radius: 30px;
+    input {
+        height: 30px;
+        border: none;
+        padding: 0 10px;
+        margin: 0;
+        display: block;
+        overflow: hidden;
+        width: calc(100% - 50px);
+        float: left;
+        background: none;
+    }
+    a.btn-search {
+        width: 30px;
+        float: right;
+        text-align: center;
+        color: #333;
+    }
+}
+
+/*溢出文字省略*/
+.multi_ellipsis {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	line-height: 24px;
+	height: 60px;
+}
+
+/*標題*/
+
+.main-box-title {
+	font-size: 25px;
+	font-weight: bold;
+	height: 40px;
+	line-height: 40px;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	letter-spacing: 5px;
+	color: #297792;
+}
+
+
+/*登入區塊*/
+
+.login-wrap {
+    padding: 20px;
+    .username,
+    .userpsw {
+        display: block;
+        width: 100%;
+        margin-bottom: 15px;
+        input {
+            padding: 0 10px;
+            height: 30px;
+            width: calc(100% - 20px);
+            font-size: 15px;
+        }
+    }
+    .btn-login {
+        width: 100%;
+		height: 60px;
+		line-height: 60px;
+		text-align: center;
+		background: #fff;
+        margin-bottom: 15px;
+    }
+    .bottom-btn-wrap {
+        overflow: hidden;
+        display: block;
+        text-align: center;
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+        .btn-gamebase,
+        .btn-facebook,
+        .btn-google {
+            /*
+            display: inline-block;
+  			width: calc(100%);
+  			float: none;
+  			margin-bottom: 15px;
+            color: #fff;
+            */
+            width: calc(100% - 50px);
+            height: 40px;
+            line-height: 40px;
+            text-align: left;
+            color: #fff;
+            display: block;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 50px;
+            i{
+                display: block;
+                float: left;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                border-right: 1px solid rgba(255,255,255,0.3);
+                position: absolute;
+                left: 0;
+                top: 0;
+                text-align: center;
+            }
+        }
+        .btn-facebook {
+            background:rgba(73,104,173,1);
+        }
+        .btn-google {
+            background:rgba(204,84,69,1);
+        }
+        .btn-regist,
+        .btn-forget {
+            width: calc(100%/2);
+            text-align: center;            
+            height: 30px;
+            line-height: 30px;
+            color: #297792;
+            display: block;
+            float: left;
+        }
+    }
+}
+
+.new-menu-box{
+    position: fixed!important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+    background: #fff;
+    opacity: 0;
+    overflow: hidden;
+    .box{
+        overflow-y:auto;
+        width: 100%;
+        max-width: 280px;
+        margin: 50px auto 0;
+        padding-bottom: 30px;
+    }
+    div#mCSB_2_container {
+        margin-right: 0!important;
+    }
+}
+
+
+footer {
+    background: #dedcdc;
+    .row {
+        overflow: hidden;
+        height: auto;
+        .copyright {
+            min-height: 100px;
+            width: 100%;
+            color: #666;
+            font-weight: normal;
+            letter-spacing: 1px;
+            a{
+                color:#666;
+            }
+            .footer_service{
+                overflow: hidden;
+                width: 100%;
+                @media only screen and (max-width: 991px) {
+                    display: none;
+                }
+                .footer_service_list{
+                    width: 85%;
+                    margin: 30px auto;
+                    li{
+                        width: calc((100% - 224px) / 5);
+                        float: left;
+                        padding: 10px 20px; 
+                        min-height: 100px;
+                        line-height: 20px;
+                        &:not(:last-child){
+                            border-right: 1px solid #ccc;
+                        }
+                        h3{
+                            margin-bottom: 10px;
+                            font-size: 20px;
+                        }
+                        dd{
+                            display: block;
+                            font-size: 13px;
+                            a{
+                                font-weight: 300;
+                                display: inline-block;
+                            }
+                        }
+                    }
+                }
+            }
+            .footer_copyright{
+                text-align: center;
+                font-size: 13px;
+                padding:20px 0;
+                line-height: 26px;
+                .cite_copyright{
+                    display: inline-block;
+                    @media only screen and (max-width: 767px) {
+                        font-size: 13px;
+                        padding:0 20px;
+                    }
+                }
+                .others{
+                    display: inline-block;
+                    @media only screen and (max-width: 767px) {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
